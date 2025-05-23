@@ -1,0 +1,19 @@
+.buttonLoadMore {
+  display: flex;
+  margin: auto auto;
+  color: white;
+  font-size: 17px;
+  background-color: rgb(105, 163, 230);
+  border-color: rgb(126, 178, 236);
+  width: 150px;
+  height: 45px;
+  font-weight: 800;
+  border-radius: 8px;
+  padding-top: 5px;
+  justify-content: center;
+  transition: background-color cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.buttonLoadMore:hover {
+  background-color: rgb(66, 148, 243);
+}
