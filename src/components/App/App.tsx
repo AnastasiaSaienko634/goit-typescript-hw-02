@@ -1,39 +1,40 @@
 import { useState, useEffect } from "react";
 import fetchGalleryApi from "../../apiGallery.js";
-import SearchBar from "../SearchBar/SearchBar";
-import ImageGallery from "../ImageGallery/ImageGallery";
+import SearchBar from "../SearchBar/SearchBar.jsx";
+import ImageGallery from "../ImageGallery/ImageGallery.js";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx";
-import Loader from "../Loader/Loader.jsx";
-import ErrorMessage from "../ErrorMessage/ErrorMessage.jsx";
+import Loader from "../Loader/Loader.js";
+import ErrorMessage from "../ErrorMessage/ErrorMessage.js";
 import toast, { Toaster } from "react-hot-toast";
 import React from "react";
-import ImageModal from "../ImageModal/ImageModal.jsx";
+import ImageModal from "../ImageModal/ImageModal.js";
+import { Photo } from "../../types.ts/images";
 
 export default function App() {
-  const [images, setImages] = useState([]);
-  const [selectFoto, setSelectFoto] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [images, setImages] = useState<Photo[]>([]);
+  const [selectFoto, setSelectFoto] = useState<Photo | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
 
-  function openModal(photo) {
+  function openModal(photo: Photo): void {
     setSelectFoto(photo);
     setIsOpen(true);
   }
 
-  function closeModal() {
+  function closeModal(): void {
     setSelectFoto(null);
     setIsOpen(false);
   }
 
-  const onSearch = (query) => {
+  function onSearch(query: string): void {
     setSearchQuery(query);
     setPage(1);
     setError(false);
     setImages([]);
-  };
+  }
 
   useEffect(() => {
     const notify = () =>
@@ -44,7 +45,7 @@ export default function App() {
     async function getData() {
       try {
         setLoading(true);
-        const data = await fetchGalleryApi(searchQuery, page);
+        const data: Photo[] = await fetchGalleryApi(searchQuery, page);
         setImages((prevImages) => [...prevImages, ...data]);
       } catch (err) {
         console.log(err);
@@ -57,7 +58,7 @@ export default function App() {
     getData();
   }, [searchQuery, page]);
 
-  const onLoadMore = () => {
+  const onLoadMore = (): void => {
     setPage((prevPage) => prevPage + 1);
   };
 

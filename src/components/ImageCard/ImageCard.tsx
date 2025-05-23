@@ -1,6 +1,11 @@
 import css from "../ImageCard/ImageCard.module.css";
+import { Photo } from "../../types.ts/images";
 
-export default function ImageCard({ image }) {
+type Props = {
+  image: Photo;
+};
+
+export default function ImageCard({ image }: Props) {
   return (
     <div>
       <img

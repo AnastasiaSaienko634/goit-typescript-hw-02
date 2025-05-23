@@ -1,7 +1,13 @@
 import css from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
+import { Photo } from "../../types.ts/images";
 
-export default function ImageGallery({ images, onClick }) {
+type Props = {
+  images: Photo[];
+  onClick: (image: Photo) => void;
+};
+
+export default function ImageGallery({ images, onClick }: Props) {
   return (
     <>
       <ul className={css.galley}>
