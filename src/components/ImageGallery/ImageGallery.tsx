@@ -1,5 +1,6 @@
 import css from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
+
 import { Photo } from "../../types.ts/images";
 
 type Props = {

@@ -6,7 +6,6 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn.jsx";
 import Loader from "../Loader/Loader.js";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.js";
 import toast, { Toaster } from "react-hot-toast";
-import React from "react";
 import ImageModal from "../ImageModal/ImageModal.js";
 import { Photo } from "../../types.ts/images";
 
@@ -45,7 +44,7 @@ export default function App() {
     async function getData() {
       try {
         setLoading(true);
-        const data: Photo[] = await fetchGalleryApi(searchQuery, page);
+        const data: Photo[] = await fetchGalleryApi({ searchQuery, page });
         setImages((prevImages) => [...prevImages, ...data]);
       } catch (err) {
         console.log(err);
